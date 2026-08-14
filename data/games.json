@@ -1,0 +1,18 @@
+{
+  "games": [
+    {
+      "name": "Timebomb Duels",
+      "placeId": "0000000000",
+      "image": "https://example.com/game.png",
+      "online": true,
+      "description": "PhantomX supported game"
+    },
+    {
+      "name": "Game 2",
+      "placeId": "0000000000",
+      "image": "",
+      "online": false,
+      "description": "Coming soon"
+    }
+  ]
+}
