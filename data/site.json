@@ -1,7 +1,13 @@
 {
-  "name": "PhantomX",
   "developer": "Cypher",
   "discord": "1a8f",
+  "developerStatus": "online",
+
   "discordUrl": "https://discord.gg/uRtbxxxrau",
-  "status": "Online"
+
+  "siteStatus": "online",
+
+  "socials": {
+    "discord": "https://discord.gg/uRtbxxxrau"
+  }
 }
