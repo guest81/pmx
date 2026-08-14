@@ -2,17 +2,27 @@
   "games": [
     {
       "name": "Timebomb Duels",
-      "placeId": "0000000000",
-      "image": "https://example.com/game.png",
-      "online": true,
-      "description": "PhantomX supported game"
+      "placeId": "11379739543",
+      "description": "Fast-paced competitive duels with quick rounds and intense movement.",
+      "image": "assets/images/games/timebomb-duels.png",
+      "url": "https://www.roblox.com/games/11379739543/Timebomb-Duels",
+      "online": true
     },
     {
-      "name": "Game 2",
-      "placeId": "0000000000",
-      "image": "",
-      "online": false,
-      "description": "Coming soon"
+      "name": "Murder Mystery 2",
+      "placeId": "142823291",
+      "description": "A classic round-based mystery experience with different roles and objectives.",
+      "image": "assets/images/games/mm2.png",
+      "url": "https://www.roblox.com/games/142823291/Murder-Mystery-2",
+      "online": true
+    },
+    {
+      "name": "Flick",
+      "placeId": "136801880565837",
+      "description": "A fast-paced competitive arena experience focused on aim, movement and skill.",
+      "image": "assets/images/games/flick.png",
+      "url": "https://www.roblox.com/games/136801880565837/Flick",
+      "online": true
     }
   ]
 }
