@@ -1,121 +1,80 @@
-/* =========================================
-   PHANTOMX
-   Main Website Controller
-========================================= */
-
-
-/* =========================================
-   CONFIG
-========================================= */
-
 const CONFIG = {
-
-    gamesFile: "data/games.json",
 
     siteFile: "data/site.json",
 
-    socialsFile: "data/socials.json",
-
-    crowCount: 12
+    gamesFile: "data/games.json"
 
 };
 
 
-/* =========================================
+/* =========================
    HELPERS
-========================================= */
+========================= */
 
-const $ = (selector) =>
-    document.querySelector(selector);
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
 
-const sleep = (ms) =>
-    new Promise(resolve => setTimeout(resolve, ms));
+/* =========================
+   INTRO
+========================= */
 
+function startIntro() {
 
-/* =========================================
-   CINEMATIC INTRO
-========================================= */
-
-async function startIntro() {
-
-    const intro = $("#intro");
+    const intro =
+        document.getElementById("intro");
 
     if (!intro) return;
 
-    await sleep(2200);
-
-    intro.classList.add("hide");
-
     setTimeout(() => {
 
-        intro.remove();
+        intro.classList.add("hide");
 
-    }, 900);
+    }, 2200);
 
 }
 
 
-/* =========================================
-   CROW SYSTEM
-========================================= */
+/* =========================
+   CROWS
+========================= */
 
 function createCrow() {
 
-    const crow = document.createElement("div");
+    const crow =
+        document.createElement("div");
 
     crow.className = "crow";
 
+    crow.innerHTML = `
 
-    const body = document.createElement("div");
+        <div class="crow-body"></div>
 
-    body.className = "crow-body";
+        <div class="crow-head"></div>
 
+        <div class="crow-eye"></div>
 
-    const head = document.createElement("div");
+        <div class="crow-wing-left"></div>
 
-    head.className = "crow-head";
+        <div class="crow-wing-right"></div>
 
-
-    const eye = document.createElement("div");
-
-    eye.className = "crow-eye";
-
-
-    const leftWing =
-        document.createElement("div");
-
-    leftWing.className =
-        "crow-wing-left";
-
-
-    const rightWing =
-        document.createElement("div");
-
-    rightWing.className =
-        "crow-wing-right";
-
-
-    crow.appendChild(body);
-
-    crow.appendChild(head);
-
-    crow.appendChild(eye);
-
-    crow.appendChild(leftWing);
-
-    crow.appendChild(rightWing);
-
+    `;
 
     return crow;
-
 }
 
 
 function spawnCrow() {
 
     const layer =
-        $("#crowLayer");
+        document.getElementById("crowLayer");
 
     if (!layer) return;
 
@@ -124,46 +83,40 @@ function spawnCrow() {
         createCrow();
 
 
-    const startSide =
-        Math.random() > .5
-            ? "left"
-            : "right";
+    const fromLeft =
+        Math.random() > .5;
 
 
     const startY =
-        Math.random() * 80 + 5;
+        Math.random() * 80;
 
 
     const endY =
-        Math.random() * 80 + 5;
+        Math.random() * 80;
 
 
     const duration =
-        Math.random() * 7000 + 7000;
+        7000 +
+        Math.random() * 7000;
 
 
-    const size =
-        Math.random() * .7 + .55;
-
-
-    const direction =
-        startSide === "left"
-            ? 1
-            : -1;
+    const scale =
+        .4 +
+        Math.random() * .7;
 
 
     crow.style.top =
         `${startY}%`;
 
 
-    crow.style.left =
-        startSide === "left"
-            ? "-100px"
-            : "calc(100% + 100px)";
-
-
     crow.style.transform =
-        `scale(${size}) scaleX(${direction})`;
+        `scale(${scale}) scaleX(${fromLeft ? 1 : -1})`;
+
+
+    crow.style.left =
+        fromLeft
+            ? "-120px"
+            : "calc(100% + 120px)";
 
 
     layer.appendChild(crow);
@@ -175,11 +128,10 @@ function spawnCrow() {
             [
 
                 {
-
                     left:
-                        startSide === "left"
-                            ? "-100px"
-                            : "calc(100% + 100px)",
+                        fromLeft
+                            ? "-120px"
+                            : "calc(100% + 120px)",
 
                     top:
                         `${startY}%`,
@@ -191,25 +143,23 @@ function spawnCrow() {
                 {
 
                     left:
-                        startSide === "left"
-                            ? "20%"
-                            : "80%",
+                        fromLeft
+                            ? "50%"
+                            : "50%",
 
                     top:
                         `${(startY + endY) / 2}%`,
 
-                    opacity: .85,
-
-                    offset: .35
+                    opacity: .7
 
                 },
 
                 {
 
                     left:
-                        startSide === "left"
-                            ? "calc(100% + 100px)"
-                            : "-100px",
+                        fromLeft
+                            ? "calc(100% + 120px)"
+                            : "-120px",
 
                     top:
                         `${endY}%`,
@@ -225,67 +175,85 @@ function spawnCrow() {
                 duration,
 
                 easing:
-                    "cubic-bezier(.25,.7,.2,1)",
-
-                fill: "forwards"
+                    "ease-in-out"
 
             }
 
         );
 
 
-    const left =
+    const wingLeft =
         crow.querySelector(
             ".crow-wing-left"
         );
 
 
-    const right =
+    const wingRight =
         crow.querySelector(
             ".crow-wing-right"
         );
 
 
-    left.animate(
+    wingLeft.animate(
 
         [
 
-            { transform: "rotate(25deg)" },
+            {
+                transform:
+                    "rotate(25deg)"
+            },
 
-            { transform: "rotate(-45deg)" },
+            {
+                transform:
+                    "rotate(-45deg)"
+            },
 
-            { transform: "rotate(25deg)" }
+            {
+                transform:
+                    "rotate(25deg)"
+            }
 
         ],
 
         {
 
-            duration: 330,
+            duration: 350,
 
-            iterations: Infinity
+            iterations:
+                Infinity
 
         }
 
     );
 
 
-    right.animate(
+    wingRight.animate(
 
         [
 
-            { transform: "rotate(-25deg)" },
+            {
+                transform:
+                    "rotate(-25deg)"
+            },
 
-            { transform: "rotate(45deg)" },
+            {
+                transform:
+                    "rotate(45deg)"
+            },
 
-            { transform: "rotate(-25deg)" }
+            {
+                transform:
+                    "rotate(-25deg)"
+            }
 
         ],
 
         {
 
-            duration: 330,
+            duration: 350,
 
-            iterations: Infinity
+            iterations:
+                Infinity
 
         }
 
@@ -303,54 +271,56 @@ function spawnCrow() {
 }
 
 
-function startCrowSystem() {
+function startCrows() {
 
     for (
         let i = 0;
-        i < CONFIG.crowCount;
+        i < 7;
         i++
     ) {
 
         setTimeout(
             spawnCrow,
-            Math.random() * 6000
+            i * 900
         );
 
     }
 
 
     setInterval(
-
-        () => {
-
-            spawnCrow();
-
-        },
-
-        3000
-
+        spawnCrow,
+        3500
     );
 
 }
 
 
-/* =========================================
-   COPY SCRIPT
-========================================= */
+/* =========================
+   COPY
+========================= */
 
-function setupCopyButton() {
+function setupCopy() {
 
     const button =
-        $("#copyButton");
+        document.getElementById(
+            "copyButton"
+        );
+
 
     const code =
-        $("#loaderCode");
+        document.getElementById(
+            "loaderCode"
+        );
+
 
     const notification =
-        $("#copyNotification");
+        document.getElementById(
+            "copyNotification"
+        );
 
 
-    if (!button || !code) return;
+    if (!button || !code)
+        return;
 
 
     button.addEventListener(
@@ -363,36 +333,38 @@ function setupCopyButton() {
 
             try {
 
-                await navigator.clipboard
+                await navigator
+                    .clipboard
                     .writeText(text);
 
             }
 
             catch {
 
-                const area =
+                const textarea =
                     document.createElement(
                         "textarea"
                     );
 
-                area.value = text;
 
-                area.style.position =
-                    "fixed";
+                textarea.value =
+                    text;
 
-                area.style.opacity = "0";
 
                 document.body.appendChild(
-                    area
+                    textarea
                 );
 
-                area.select();
+
+                textarea.select();
+
 
                 document.execCommand(
                     "copy"
                 );
 
-                area.remove();
+
+                textarea.remove();
 
             }
 
@@ -401,28 +373,20 @@ function setupCopyButton() {
                 "Copied ✓";
 
 
-            if (notification) {
-
-                notification.classList.add(
-                    "show"
-                );
-
-            }
+            notification
+                ?.classList
+                .add("show");
 
 
             setTimeout(() => {
 
                 button.innerHTML =
-                    'Copy <span>⧉</span>';
+                    'Copy Script <span>⧉</span>';
 
 
-                if (notification) {
-
-                    notification.classList.remove(
-                        "show"
-                    );
-
-                }
+                notification
+                    ?.classList
+                    .remove("show");
 
             }, 1800);
 
@@ -432,36 +396,34 @@ function setupCopyButton() {
 }
 
 
-/* =========================================
+/* =========================
    GAMES
-========================================= */
+========================= */
 
 async function loadGames() {
 
     const grid =
-        $("#gamesGrid");
+        document.getElementById(
+            "gamesGrid"
+        );
 
-    if (!grid) return;
+
+    if (!grid)
+        return;
 
 
     try {
 
         const response =
             await fetch(
-                CONFIG.gamesFile,
-                {
-                    cache: "no-store"
-                }
+                `${CONFIG.gamesFile}?v=${Date.now()}`
             );
 
 
-        if (!response.ok) {
-
+        if (!response.ok)
             throw new Error(
-                "Could not load games.json"
+                "games.json not found"
             );
-
-        }
 
 
         const data =
@@ -494,20 +456,149 @@ async function loadGames() {
         }
 
 
-        games.forEach(
-            (game, index) => {
+        games.forEach(game => {
 
-                const card =
-                    createGameCard(
-                        game,
-                        index
-                    );
+            const online =
+                game.online === true;
 
 
-                grid.appendChild(card);
+            const image =
+                game.image ||
+                "assets/images/phantomx-logo.png";
 
-            }
-        );
+
+            const url =
+                game.url || "#";
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                `game-card ${
+                    online
+                        ? ""
+                        : "is-offline"
+                }`;
+
+
+            card.innerHTML = `
+
+                <div class="game-image">
+
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(game.name)}"
+                        loading="lazy"
+                    >
+
+                    <div class="game-overlay"></div>
+
+                    <div
+                        class="
+                            game-status
+                            ${
+                                online
+                                    ? "online"
+                                    : "offline"
+                            }
+                        "
+                    >
+
+                        <span></span>
+
+                        ${
+                            online
+                                ? "ONLINE"
+                                : "OFFLINE"
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-info">
+
+                    <div class="game-type">
+                        PHANTOMX SUPPORTED
+                    </div>
+
+
+                    <h3>
+                        ${escapeHTML(
+                            game.name
+                        )}
+                    </h3>
+
+
+                    <p>
+                        ${escapeHTML(
+                            game.description
+                        )}
+                    </p>
+
+
+                    <div class="game-bottom">
+
+                        <div class="game-state">
+
+                            <span></span>
+
+                            ${
+                                online
+                                    ? "Available now"
+                                    : "Currently offline"
+                            }
+
+                        </div>
+
+
+                        ${
+                            online
+                                ? `
+
+                                    <a
+                                        class="play-button"
+                                        href="${escapeHTML(url)}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+
+                                        PLAY →
+
+                                    </a>
+
+                                `
+                                : `
+
+                                    <span
+                                        class="
+                                            play-button
+                                            disabled
+                                        "
+                                    >
+
+                                        OFFLINE
+
+                                    </span>
+
+                                `
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        });
 
     }
 
@@ -520,7 +611,7 @@ async function loadGames() {
 
             <div class="loading-card">
 
-                Unable to load games.
+                Failed to load games.
 
             </div>
 
@@ -531,266 +622,197 @@ async function loadGames() {
 }
 
 
-function createGameCard(
-    game,
-    index
-) {
-
-    const card =
-        document.createElement(
-            "article"
-        );
-
-
-    card.className =
-        "game-card";
-
-
-    const online =
-        Boolean(game.online);
-
-
-    const statusText =
-        online
-            ? "● ONLINE"
-            : "● OFFLINE";
-
-
-    const image =
-        game.image ||
-        "assets/logo/phantomx.png";
-
-
-    const url =
-        game.url || "#";
-
-
-    card.innerHTML = `
-
-        <div class="game-image">
-
-            <img
-                src="${escapeHtml(image)}"
-                alt="${escapeHtml(game.name || "Game")}"
-                loading="lazy"
-                onerror="this.style.display='none'"
-            >
-
-            <div class="game-overlay"></div>
-
-            <div class="game-status ${online ? "online" : "offline"}">
-
-                ${statusText}
-
-            </div>
-
-        </div>
-
-
-        <div class="game-info">
-
-            <h3>
-
-                ${escapeHtml(
-                    game.name ||
-                    "Unknown Game"
-                )}
-
-            </h3>
-
-
-            <p>
-
-                ${escapeHtml(
-                    game.description ||
-                    "PhantomX supported game."
-                )}
-
-            </p>
-
-
-            <div class="game-bottom">
-
-                <span>
-
-                    ${online
-                        ? "Available now"
-                        : "Currently offline"}
-
-                </span>
-
-
-                <a
-                    class="play-button ${online ? "" : "disabled"}"
-                    href="${escapeHtml(url)}"
-                    target="_blank"
-                    rel="noopener"
-                >
-
-                    ${online
-                        ? "PLAY →"
-                        : "OFFLINE"}
-
-                </a>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    card.style.animation =
-        `fadeUp .6s ${index * .08}s both`;
-
-
-    return card;
-
-}
-
-
-/* =========================================
+/* =========================
    SITE DATA
-========================================= */
+========================= */
 
-async function loadSiteData() {
+async function loadSite() {
 
     try {
 
         const response =
             await fetch(
-                CONFIG.siteFile,
-                {
-                    cache: "no-store"
-                }
+                `${CONFIG.siteFile}?v=${Date.now()}`
             );
 
 
-        if (!response.ok) return;
+        if (!response.ok)
+            throw new Error(
+                "site.json not found"
+            );
 
 
         const data =
             await response.json();
 
 
-        const developer =
-            data.developer;
+        const discordURL =
+            data.discordUrl ||
+            data.socials?.discord ||
+            "#";
 
 
-        if (developer) {
+        /* Developer name */
 
-            const name =
-                $("#developerName");
-
-
-            const discord =
-                $("#developerDiscord");
-
-
-            const status =
-                $("#developerStatus");
-
-
-            if (name) {
-
-                name.textContent =
-                    developer.name ||
-                    "Cypher";
-
-            }
-
-
-            if (discord) {
-
-                discord.textContent =
-                    developer.discord ||
-                    "1a8f";
-
-            }
-
-
-            if (status) {
-
-                status.textContent =
-                    developer.online
-                        ? "ONLINE"
-                        : "OFFLINE";
-
-            }
-
-        }
-
-
-        if (data.status) {
-
-            const siteStatus =
-                $("#siteStatus");
-
-
-            if (siteStatus) {
-
-                siteStatus.textContent =
-                    data.status.text ||
-                    "PhantomX is online";
-
-            }
-
-        }
-
-    }
-
-    catch (error) {
-
-        console.warn(
-            "site.json:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================
-   SOCIALS / DISCORD
-========================================= */
-
-async function loadSocials() {
-
-    try {
-
-        const response =
-            await fetch(
-                CONFIG.socialsFile,
-                {
-                    cache: "no-store"
-                }
+        const name =
+            document.getElementById(
+                "developerName"
             );
 
 
-        if (!response.ok) return;
+        if (name)
+            name.textContent =
+                data.developer ||
+                "Cypher";
 
 
-        const data =
-            await response.json();
-
+        /* Discord username */
 
         const discord =
-            data.discord;
+            document.getElementById(
+                "developerDiscord"
+            );
 
 
-        const button =
-            $("#discordButton");
+        if (discord)
+            discord.textContent =
+                data.discord ||
+                "1a8f";
+
+
+        /* Developer avatar */
+
+        const avatar =
+            document.getElementById(
+                "developerAvatar"
+            );
 
 
         if (
-            button &&
-            discord &&
-            discord.invite
+            avatar &&
+            data.developerImage
         ) {
 
-            button.href =
-                discord.invite;
+            avatar.src =
+                data.developerImage;
+
+        }
+
+
+        /* Discord links */
+
+        [
+
+            "navDiscord",
+
+            "heroDiscord",
+
+            "developerDiscordButton"
+
+        ].forEach(id => {
+
+            const element =
+                document.getElementById(id);
+
+
+            if (element)
+                element.href =
+                    discordURL;
+
+        });
+
+
+        /* Developer status */
+
+        const isOnline =
+            String(
+                data.developerStatus ||
+                "offline"
+            ).toLowerCase() ===
+            "online";
+
+
+        const status =
+            document.getElementById(
+                "developerStatus"
+            );
+
+
+        const presence =
+            document.getElementById(
+                "developerPresence"
+            );
+
+
+        const avatarStatus =
+            document.getElementById(
+                "avatarStatus"
+            );
+
+
+        if (status) {
+
+            status.textContent =
+                isOnline
+                    ? "ONLINE"
+                    : "OFFLINE";
+
+        }
+
+
+        if (presence) {
+
+            presence.classList.toggle(
+                "online",
+                isOnline
+            );
+
+
+            presence.classList.toggle(
+                "offline",
+                !isOnline
+            );
+
+        }
+
+
+        if (avatarStatus) {
+
+            avatarStatus.style.background =
+                isOnline
+                    ? "#43e58a"
+                    : "#ff2932";
+
+            avatarStatus.style.boxShadow =
+                isOnline
+                    ? "0 0 15px rgba(67,229,138,.5)"
+                    : "0 0 15px rgba(255,30,40,.5)";
+
+        }
+
+
+        /* Website status */
+
+        const siteStatus =
+            document.getElementById(
+                "siteStatus"
+            );
+
+
+        const siteOnline =
+            String(
+                data.siteStatus ||
+                "offline"
+            ).toLowerCase() ===
+            "online";
+
+
+        if (siteStatus) {
+
+            siteStatus.textContent =
+                siteOnline
+                    ? "PHANTOMX ONLINE"
+                    : "PHANTOMX OFFLINE";
 
         }
 
@@ -798,8 +820,8 @@ async function loadSocials() {
 
     catch (error) {
 
-        console.warn(
-            "socials.json:",
+        console.error(
+            "Failed to load site data:",
             error
         );
 
@@ -808,194 +830,23 @@ async function loadSocials() {
 }
 
 
-/* =========================================
-   HTML ESCAPE
-========================================= */
-
-function escapeHtml(value) {
-
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
-
-}
-
-
-/* =========================================
-   SCROLL REVEAL
-========================================= */
-
-function setupScrollReveal() {
-
-    const elements =
-        document.querySelectorAll(
-            ".loader-card, .game-card, .developer-card, .discord-panel"
-        );
-
-
-    const observer =
-        new IntersectionObserver(
-
-            entries => {
-
-                entries.forEach(
-                    entry => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target.animate(
-
-                                [
-
-                                    {
-                                        opacity: 0,
-
-                                        transform:
-                                            "translateY(30px)"
-                                    },
-
-                                    {
-                                        opacity: 1,
-
-                                        transform:
-                                            "translateY(0)"
-                                    }
-
-                                ],
-
-                                {
-
-                                    duration: 700,
-
-                                    easing:
-                                        "cubic-bezier(.2,.7,.2,1)",
-
-                                    fill:
-                                        "forwards"
-
-                                }
-
-                            );
-
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
-
-            {
-                threshold: .12
-            }
-
-        );
-
-
-    elements.forEach(
-        element =>
-            observer.observe(element)
-    );
-
-}
-
-
-/* =========================================
-   MOUSE PARALLAX
-========================================= */
-
-function setupParallax() {
-
-    const background =
-        document.querySelector(
-            ".background"
-        );
-
-
-    if (!background) return;
-
-
-    window.addEventListener(
-        "mousemove",
-        event => {
-
-            const x =
-                (event.clientX /
-                    window.innerWidth -
-                    .5) * 20;
-
-
-            const y =
-                (event.clientY /
-                    window.innerHeight -
-                    .5) * 20;
-
-
-            background.style.transform =
-                `translate(${x * .12}px, ${y * .12}px)`;
-
-        }
-    );
-
-}
-
-
-/* =========================================
+/* =========================
    START
-========================================= */
+========================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    async () => {
-
-        setupCopyButton();
-
-        setupScrollReveal();
-
-        setupParallax();
-
-        startCrowSystem();
-
-        await Promise.allSettled([
-
-            loadGames(),
-
-            loadSiteData(),
-
-            loadSocials()
-
-        ]);
+    () => {
 
         startIntro();
+
+        startCrows();
+
+        setupCopy();
+
+        loadGames();
+
+        loadSite();
 
     }
 );
