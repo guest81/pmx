@@ -2,479 +2,726 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="PhantomX — Enter the Phantom experience.">
-    <meta name="theme-color" content="#08090d">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>PhantomX</title>
+    <meta
+        name="theme-color"
+        content="#09090c"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="description"
+        content="PhantomX — powerful Roblox scripts and supported experiences."
+    >
+
+    <title>PhantomX — Roblox Scripts</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- Cinematic Intro -->
-    <div id="intro">
 
-        <div class="intro-glow"></div>
+<!-- =========================
+     BACKGROUND
+========================= -->
 
-        <div class="intro-logo">
-            PX
-        </div>
+<div class="background">
 
-        <div class="intro-title">
-            PHANTOM<span>X</span>
-        </div>
+    <div class="red-glow glow-one"></div>
+    <div class="red-glow glow-two"></div>
 
-        <div class="intro-loading">
-            INITIALIZING PHANTOMX
-        </div>
+    <div class="grid"></div>
 
-        <div class="intro-line">
-            <span></span>
-        </div>
+</div>
+
+
+<!-- =========================
+     CROWS
+========================= -->
+
+<div
+    id="crowLayer"
+    class="crow-layer"
+></div>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div
+    id="intro"
+    class="intro"
+>
+
+    <div class="intro-glow"></div>
+
+    <div class="intro-logo">
+
+        <img
+            src="assets/images/phantomx-logo.png"
+            alt="PhantomX"
+        >
 
     </div>
 
-
-    <!-- Background -->
-    <div class="background">
-
-        <div class="grid"></div>
-
-        <div class="glow glow-one"></div>
-        <div class="glow glow-two"></div>
-
-        <div id="crowLayer"></div>
-
+    <div class="intro-name">
+        PHANTOM<span>X</span>
     </div>
 
+    <div class="intro-line"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
+    <div class="intro-subtitle">
+        ENTER THE PHANTOM
+    </div>
 
-        <a href="#" class="brand">
+</div>
 
-            <div class="brand-icon">
-                PX
-            </div>
 
-            <div class="brand-name">
-                Phantom<span>X</span>
-            </div>
+<!-- =========================
+     NAVBAR
+========================= -->
 
+<header class="navbar">
+
+    <a
+        href="#home"
+        class="brand"
+    >
+
+        <div class="brand-logo">
+
+            <img
+                src="assets/images/phantomx-logo.png"
+                alt="PhantomX"
+            >
+
+        </div>
+
+        <div class="brand-text">
+
+            <strong>PHANTOM<span>X</span></strong>
+
+            <small>ROBLOX PROJECT</small>
+
+        </div>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="#home">
+            Home
         </a>
 
+        <a href="#scripts">
+            Scripts
+        </a>
 
-        <div class="nav-links">
+        <a href="#games">
+            Games
+        </a>
 
-            <a href="#script">
-                Script
-            </a>
-
-            <a href="#games">
-                Games
-            </a>
-
-            <a href="#developer">
-                Developer
-            </a>
-
-            <a href="#discord">
-                Discord
-            </a>
-
-        </div>
-
-
-        <a href="#script" class="nav-button">
-            Get Started
+        <a href="#developer">
+            Developer
         </a>
 
     </nav>
 
 
-    <!-- HERO -->
-    <main>
+    <a
+        id="navDiscord"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-discord"
+    >
 
-        <section class="hero">
+        Discord
 
-            <div class="hero-content">
+        <span>↗</span>
 
-                <div class="status-badge">
+    </a>
 
-                    <span class="status-dot"></span>
+</header>
 
-                    <span id="siteStatus">
-                        PhantomX is online
-                    </span>
 
-                </div>
+<!-- =========================
+     MAIN
+========================= -->
 
+<main>
 
-                <h1>
 
-                    ENTER THE
+<!-- =========================
+     HERO
+========================= -->
 
-                    <span>
-                        PHANTOM
-                    </span>
+<section
+    id="home"
+    class="hero section"
+>
 
-                    EXPERIENCE.
+    <div class="hero-content">
 
-                </h1>
+        <div class="status-pill">
 
+            <span class="status-dot"></span>
 
-                <p>
-
-                    A modern hub built around PhantomX.
-                    Explore supported games, access the loader,
-                    and discover the Phantom community.
-
-                </p>
-
-
-                <div class="hero-buttons">
-
-                    <a href="#script" class="button-primary">
-
-                        Get PhantomX
-
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-
-                    <a href="#games" class="button-secondary">
-
-                        Explore Games
-
-                    </a>
-
-                </div>
-
-
-                <div class="hero-scroll">
-
-                    SCROLL TO EXPLORE
-
-                    <span>
-                        ↓
-                    </span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SCRIPT -->
-        <section class="section" id="script">
-
-            <div class="section-number">
-                01 / SCRIPT
-            </div>
-
-
-            <div class="section-title-row">
-
-                <div>
-
-                    <h2>
-
-                        Your script.
-
-                        <span>
-                            One click away.
-                        </span>
-
-                    </h2>
-
-                </div>
-
-
-                <p>
-
-                    Copy the PhantomX loader
-                    and get started instantly.
-
-                </p>
-
-            </div>
-
-
-            <div class="loader-card">
-
-                <div class="loader-header">
-
-                    <div class="window-controls">
-
-                        <i></i>
-                        <i></i>
-                        <i></i>
-
-                    </div>
-
-
-                    <div class="loader-name">
-
-                        PhantomX Loader
-
-                    </div>
-
-
-                    <button id="copyButton">
-
-                        Copy
-
-                        <span>
-                            ⧉
-                        </span>
-
-                    </button>
-
-                </div>
-
-
-                <div class="loader-code">
-
-                    <code id="loaderCode">loadstring(game:HttpGet("https://raw.githubusercontent.com/Cypher666-oss/Ld-/main/PhantomXLd.lua.txt"))()</code>
-
-                </div>
-
-
-                <div id="copyNotification">
-
-                    ✓ Copied to clipboard
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- GAMES -->
-        <section class="section" id="games">
-
-            <div class="section-number">
-                02 / GAMES
-            </div>
-
-
-            <div class="section-title-row">
-
-                <div>
-
-                    <h2>
-
-                        Supported
-
-                        <span>
-                            games.
-                        </span>
-
-                    </h2>
-
-                </div>
-
-
-                <p>
-
-                    Games supported by PhantomX.
-                    Data is loaded automatically from GitHub.
-
-                </p>
-
-            </div>
-
-
-            <div id="gamesGrid" class="games-grid">
-
-                <div class="loading-card">
-
-                    Loading games...
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- DEVELOPER -->
-        <section class="section developer-section" id="developer">
-
-            <div class="section-number">
-                03 / DEVELOPER
-            </div>
-
-
-            <div class="developer-card">
-
-                <div class="developer-avatar">
-
-                    PX
-
-                </div>
-
-
-                <div class="developer-info">
-
-                    <div class="developer-label">
-                        PHANTOMX DEVELOPER
-                    </div>
-
-                    <h2 id="developerName">
-                        Cypher
-                    </h2>
-
-                    <p>
-
-                        Building PhantomX
-                        and its ecosystem.
-
-                    </p>
-
-
-                    <div class="developer-discord">
-
-                        <span class="discord-icon">
-                            ◇
-                        </span>
-
-                        <div>
-
-                            <small>
-                                Discord
-                            </small>
-
-                            <strong id="developerDiscord">
-                                1a8f
-                            </strong>
-
-                        </div>
-
-
-                        <div class="online-state">
-
-                            <span></span>
-
-                            <b id="developerStatus">
-                                ONLINE
-                            </b>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- DISCORD -->
-        <section class="section" id="discord">
-
-            <div class="discord-panel">
-
-                <div class="discord-decoration">
-                    PX
-                </div>
-
-
-                <div class="discord-content">
-
-                    <div class="section-number">
-                        04 / COMMUNITY
-                    </div>
-
-
-                    <h2>
-
-                        Join the
-
-                        <span>
-                            Phantom
-                        </span>
-
-                        community.
-
-                    </h2>
-
-
-                    <p>
-
-                        Stay updated with PhantomX,
-                        announcements, updates and more.
-
-                    </p>
-
-
-                    <a id="discordButton"
-                       href="#"
-                       class="button-primary"
-                       target="_blank">
-
-                        Join Discord
-
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        <div class="footer-brand">
-
-            <div class="brand-icon">
-                PX
-            </div>
-
-            <span>
-                Phantom<span>X</span>
+            <span id="siteStatus">
+                PHANTOMX ONLINE
             </span>
 
         </div>
 
 
-        <div class="footer-status">
+        <h1>
 
-            <span></span>
+            <span class="muted">
+                ENTER THE
+            </span>
 
-            All systems operational
+            <span class="red">
+                PHANTOM.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            PhantomX is a Roblox scripting project
+            focused on powerful tools, clean design
+            and a constantly growing list of supported
+            experiences.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#scripts"
+                class="button primary"
+            >
+
+                Explore Scripts
+
+                <span>↓</span>
+
+            </a>
+
+
+            <a
+                id="heroDiscord"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button secondary"
+            >
+
+                Join Discord
+
+                <span>↗</span>
+
+            </a>
 
         </div>
 
 
-        <div class="footer-copy">
+        <div class="hero-stats">
 
-            © 2026 PhantomX
+            <div>
+
+                <strong>
+                    03
+                </strong>
+
+                <span>
+                    SUPPORTED GAMES
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    01
+                </strong>
+
+                <span>
+                    PROJECT
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    ∞
+                </strong>
+
+                <span>
+                    POSSIBILITIES
+                </span>
+
+            </div>
 
         </div>
 
-    </footer>
+    </div>
 
 
-    <script src="script.js"></script>
+    <div class="hero-visual">
+
+        <div class="visual-ring ring-one"></div>
+        <div class="visual-ring ring-two"></div>
+
+        <div class="hero-logo-card">
+
+            <div class="card-noise"></div>
+
+            <img
+                src="assets/images/phantomx-logo.png"
+                alt="PhantomX Logo"
+            >
+
+            <div class="hero-logo-text">
+                PHANTOMX
+            </div>
+
+            <div class="hero-logo-sub">
+                SYSTEM INITIALIZED
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+
+<section
+    id="scripts"
+    class="section scripts-section"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                THE CORE
+            </span>
+
+            <h2>
+                PhantomX
+                <span>Script.</span>
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Your PhantomX loader,
+            ready to copy and execute.
+
+        </p>
+
+    </div>
+
+
+    <div class="script-card">
+
+        <div class="script-card-top">
+
+            <div class="window-dots">
+
+                <i></i>
+                <i></i>
+                <i></i>
+
+            </div>
+
+
+            <span>
+                PhantomX Loader
+            </span>
+
+
+            <span class="language">
+                LUA
+            </span>
+
+        </div>
+
+
+        <div class="code-wrapper">
+
+<pre><code id="loaderCode">loadstring(game:HttpGet("https://raw.githubusercontent.com/Cypher666-oss/Ld-/main/PhantomXLd.lua.txt"))()</code></pre>
+
+        </div>
+
+
+        <div class="script-actions">
+
+            <button
+                id="copyButton"
+                class="copy-button"
+            >
+
+                Copy Script
+
+                <span>⧉</span>
+
+            </button>
+
+
+            <span
+                id="copyNotification"
+                class="copy-notification"
+            >
+                Copied successfully
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GAMES
+========================= -->
+
+<section
+    id="games"
+    class="section games-section"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                SUPPORTED
+            </span>
+
+            <h2>
+                PhantomX
+                <span>Games.</span>
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Experiences currently supported
+            by PhantomX.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="gamesGrid"
+        class="games-grid"
+    >
+
+        <div class="loading-card">
+
+            <div class="loader"></div>
+
+            Loading supported games...
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DEVELOPER
+========================= -->
+
+<section
+    id="developer"
+    class="section developer-section"
+>
+
+    <div class="developer-card">
+
+        <div class="developer-avatar">
+
+            <img
+                id="developerAvatar"
+                src="assets/images/discord.png"
+                alt="Developer"
+            >
+
+            <span
+                id="avatarStatus"
+                class="avatar-status"
+            ></span>
+
+        </div>
+
+
+        <div class="developer-info">
+
+            <span class="eyebrow">
+                DEVELOPER
+            </span>
+
+
+            <h2 id="developerName">
+                Cypher
+            </h2>
+
+
+            <div class="discord-user">
+
+                <span class="discord-icon">
+                    ◇
+                </span>
+
+                <span id="developerDiscord">
+                    1a8f
+                </span>
+
+            </div>
+
+
+            <div
+                id="developerPresence"
+                class="presence offline"
+            >
+
+                <span></span>
+
+                <strong id="developerStatus">
+                    OFFLINE
+                </strong>
+
+            </div>
+
+
+            <p>
+
+                Building PhantomX with a focus on
+                performance, design and a better
+                scripting experience.
+
+            </p>
+
+
+            <a
+                id="developerDiscordButton"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button primary"
+            >
+
+                Contact on Discord
+
+                <span>↗</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="section features-section">
+
+    <div class="section-heading centered">
+
+        <span class="eyebrow">
+            WHY PHANTOMX
+        </span>
+
+        <h2>
+            Built
+            <span>Differently.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="features-grid">
+
+
+        <article class="feature">
+
+            <div class="feature-number">
+                01
+            </div>
+
+            <h3>
+                Clean Interface
+            </h3>
+
+            <p>
+                A dark PhantomX interface designed
+                to stay clean, fast and responsive.
+            </p>
+
+        </article>
+
+
+        <article class="feature">
+
+            <div class="feature-number">
+                02
+            </div>
+
+            <h3>
+                Dynamic Games
+            </h3>
+
+            <p>
+                Supported games are loaded directly
+                from the repository data.
+            </p>
+
+        </article>
+
+
+        <article class="feature">
+
+            <div class="feature-number">
+                03
+            </div>
+
+            <h3>
+                Constant Updates
+            </h3>
+
+            <p>
+                Update the data files and deploy
+                without rebuilding the whole website.
+            </p>
+
+        </article>
+
+
+        <article class="feature">
+
+            <div class="feature-number">
+                04
+            </div>
+
+            <h3>
+                Phantom Atmosphere
+            </h3>
+
+            <p>
+                Animated crows, red lighting,
+                particles and cinematic transitions.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+
+        <img
+            src="assets/images/phantomx-logo.png"
+            alt="PhantomX"
+        >
+
+        <div>
+
+            <strong>
+                PHANTOM<span>X</span>
+            </strong>
+
+            <small>
+                Roblox scripting project
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#scripts">
+            Scripts
+        </a>
+
+        <a href="#games">
+            Games
+        </a>
+
+        <a href="#developer">
+            Developer
+        </a>
+
+    </div>
+
+
+    <div class="footer-copy">
+
+        © 2026 PhantomX
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 
